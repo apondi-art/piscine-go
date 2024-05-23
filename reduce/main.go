@@ -1,11 +1,12 @@
 package main
 
-import (
-	"fmt"
-)
+func ReduceInt(a []int, f func(int, int) int) int {
+	res := a[0]
+	for i := 1; i < len(a); i++ {
+		res = f(res, a[i])
 
-func ReduceInt(a []int, f func(int, int) int) {
-	fmt.Println(f(a[0], a[1]))
+	}
+	return res
 }
 func main() {
 	mul := func(acc int, cur int) int {
@@ -17,8 +18,8 @@ func main() {
 	div := func(acc int, cur int) int {
 		return acc / cur
 	}
-	as := []int{500, 2}
-	ReduceInt(as, mul)
-	ReduceInt(as, sum)
-	ReduceInt(as, div)
+	as := []int{500, 2, 45, 7, 9}
+	println(ReduceInt(as, mul))
+	println(ReduceInt(as, sum))
+	println(ReduceInt(as, div))
 }
